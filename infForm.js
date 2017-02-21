@@ -11,11 +11,20 @@ document.addEventListener("DOMContentLoaded", function() {
   const addForm = (where, e) => {
     e.preventDefault();
 
-    const target = (where === 'bro') ? e.target.parentNode.parentNode : e.target.parentNode;
+    const target = (where === 'bro') ? e.target.parentNode.parentNode.parentNode : e.target.parentNode;
 
     // Cloned the node because I do not want the values and child associated with the element
     const DMnewForm = DMmyForm.cloneNode('false');
-    decorateForm(DMnewForm); // decorate it
+    decorateForm(DMnewForm); // decorate it with eventListners
+
+    // Update line labels
+    const clickedLineNum = target.getElementsByClassName('line')[0].textContent;
+    console.log(clickedLineNum);
+    const number = (where === 'bro') ?
+      clickedLineNum.slice(0, clickedLineNum.length - 1) + (target.children.length) :
+      clickedLineNum + '.' + (target.children.length - 4);
+    console.log(number);
+    DMnewForm.getElementsByClassName('line')[0].textContent = number;
     target.appendChild(DMnewForm); // add it to target
   }
 
@@ -23,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function() {
     e.preventDefault();
     console.log(e.target);
   }
-
 
   // Decorates the given node to have correct event listners;
   const decorateForm = (domNode) => {
