@@ -30,7 +30,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const addInput = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    const parent = e.target.parentNode;
+    const newInput = parent.getElementsByClassName('input')[0].cloneNode('false');
+    parent.insertBefore(newInput, e.target);
   }
 
   // Decorates the given node to have correct event listners;
