@@ -1,0 +1,14 @@
+/**
+* Add styling to the form to make it look appealing
+*/
+.form-block {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #000;
+
+}
+
+
+span {
+    padding-right: 15px;
+}
