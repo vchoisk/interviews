@@ -19,12 +19,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Update line labels
     const clickedLineNum = target.getElementsByClassName('line')[0].textContent;
-    console.log(clickedLineNum);
     const number = (where === 'bro') ?
-      clickedLineNum.slice(0, clickedLineNum.length - 1) + (target.children.length) :
+      clickedLineNum.slice(0, clickedLineNum.length) + '.' + (target.children.length - 4) :
       clickedLineNum + '.' + (target.children.length - 4);
-    console.log(number);
-    DMnewForm.getElementsByClassName('line')[0].textContent = number;
+
+    if (!target.isEqualNode(document.body)) {
+      console.log('body not target');
+    }
+    DMnewForm.getElementsByClassName('line')[0].textContent =
+      !target.isEqualNode(document.body) ? number : document.body.children.length;
     target.appendChild(DMnewForm); // add it to target
   }
 
